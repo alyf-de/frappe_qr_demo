@@ -55,10 +55,12 @@ app_license = "MIT"
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "qr_demo.utils.jinja_methods",
-# 	"filters": "qr_demo.utils.jinja_filters"
-# }
+jinja = {
+	"methods": [
+		"qr_demo.qr_code.get_qr_code"
+	],
+	# "filters": "qr_demo.utils.jinja_filters"
+}
 
 # Installation
 # ------------
