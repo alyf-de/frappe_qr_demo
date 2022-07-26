@@ -20,9 +20,18 @@ The **QR Demo** DocType also has a field _QR Image_, which just displays the dat
 Try to print the document, using the print format "QR Demo". The QR code will work flawlessly in print preview and PDF. The print format is very simple. It uses the data from _QR Code_ like this:
 
 ```jinja
-<p>QR Code with content "{{ doc.title }}":</p>
+<p>QR Code stored in field <i>QR Code</i>:</p>
 <img src="{{ doc.qr_code }}" alt="{{ doc.title }}"/>
 ```
+
+For cases when we need dynamic QR codes that are not stored in the document, we can generate them ad-hoc by calling `get_qr_code` in the print format:
+
+```jinja
+<p>QR Code generated ad-hoc:</p>
+<img src="{{ get_qr_code('Hello World!') }}" alt="Hello World!"/>
+```
+
+We achieved this by adding the `get_qr_code()` method to the `jinja` configuration in our `hooks.py` file.
 
 ### Print Preview
 ![Form: saved QR Demo](img/print_preview.png)
