@@ -24,14 +24,22 @@ Try to print the document, using the print format "QR Demo". The QR code will wo
 <img src="{{ doc.qr_code }}" alt="{{ doc.title }}"/>
 ```
 
-For cases when we need dynamic QR codes that are not stored in the document, we can generate them ad-hoc by calling `get_qr_code` in the print format:
+For cases when we need dynamic QR codes, that are not stored in the document, we can generate them ad-hoc by calling `get_qr_code` in the print format:
 
 ```jinja
 <p>QR Code generated ad-hoc:</p>
 <img src="{{ get_qr_code('Hello World!') }}" alt="Hello World!"/>
 ```
 
-We achieved this by adding the `get_qr_code()` method to the `jinja` configuration in our `hooks.py` file.
+We achieved this by adding the `get_qr_code()` method to the `jinja` configuration in our `hooks.py` file, like this:
+
+```python
+jinja = {
+	"methods": [
+		"qr_demo.qr_code.get_qr_code"
+	],
+}
+```
 
 ### Print Preview
 ![Form: saved QR Demo](img/print_preview.png)
